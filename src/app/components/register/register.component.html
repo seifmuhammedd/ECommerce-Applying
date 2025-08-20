@@ -1,0 +1,29 @@
+<section class="m-3">
+    <div class="container">
+        <div class="w-75 mx-auto">
+            <form class="bg-light p-3" [formGroup]="registerForm" (ngSubmit)="submitForm()">
+                <div class="mb-3">
+                    <label for="name" class="form-label">User Name</label>
+                    <input type="text" formControlName="name" class="form-control" id="name" placeholder="ex: Seif">
+                </div>
+                <div class="mb-3">
+                    <label for="email" class="form-label">Email address</label>
+                    <input type="email" formControlName="email" class="form-control" id="email" placeholder="name@example.com">
+                </div>
+                <div class="mb-3">
+                    <label for="phone" class="form-label">Phone</label>
+                    <input type="tel" formControlName="phone" name="phone" class="form-control" id="phone" placeholder="01xxxxxxxxx">
+                </div>
+                <div class="mb-3">
+                    <label for="password" class="form-label">Password</label>
+                    <input type="password" formControlName="password" name="password" class="form-control" id="password" placeholder="*******">
+                </div>
+                <div class="mb-3">
+                    <label for="password" class="form-label">Confirm Password</label>
+                    <input type="password" formControlName="confirmPassword" class="form-control" id="password" placeholder="*******">
+                </div>
+                <button class="btn btn-success w-50 d-block mx-auto" [disabled]="registerForm.invalid">Submit</button>
+            </form>
+        </div>
+    </div>
+</section>
