@@ -4,25 +4,74 @@
             <form class="bg-light p-3" [formGroup]="registerForm" (ngSubmit)="submitForm()">
                 <div class="mb-3">
                     <label for="name" class="form-label">User Name</label>
-                    <input type="text" formControlName="name" class="form-control" id="name" placeholder="ex: Seif">
+                    <input [ngClass]="{
+                        'is-valid': !registerForm.get('name')?.errors && (registerForm.get('name')?.touched || registerForm.get('name')?.dirty),
+                        'is-invalid': registerForm.get('name')?.errors && (registerForm.get('name')?.touched || registerForm.get('name')?.dirty)
+                    }" type="text" formControlName="name" class="form-control" id="name" placeholder="ex: Seif">
+                    @if (registerForm.get("name")?.errors && registerForm.get("name")?.touched ) {
+                    <div class="alert alert-warning my-2 p-2 fs-6 fw-bold rounded-2">
+                        @if (registerForm.get("name")?.getError("required")) {<p class="m-0">User Name is required</p>}
+                        @if (registerForm.get("name")?.getError("minlength")) {<p class="m-0">User Name length must contain at least 3 characters</p>}
+                        @if(registerForm.get("name")?.getError("maxlength")){<p class="m-0">User Name length must contain at most 12 characters</p>}
+                    </div>
+                    }
                 </div>
                 <div class="mb-3">
                     <label for="email" class="form-label">Email address</label>
-                    <input type="email" formControlName="email" class="form-control" id="email" placeholder="name@example.com">
+                    <input [ngClass]="{
+                        'is-valid': !registerForm.get('email')?.errors && registerForm.get('email')?.touched,
+                        'is-invalid': registerForm.get('email')?.errors && registerForm.get('email')?.touched
+                    }" type="email" formControlName="email" class="form-control" id="email"
+                        placeholder="name@example.com">
+                        @if (registerForm.get("email")?.errors && registerForm.get("email")?.touched) {
+                            <div class="alert alert-warning my-2 p-2 fs-6 fw-bold rounded-2">
+                            @if (registerForm.get("email")?.getError("required")) {<p class="m-0">Email Is Required</p>}
+                            @if (registerForm.get("email")?.getError("pattern")) {<p class="m-0">Email format is not correct</p>}
+                            </div>
+                        }
                 </div>
                 <div class="mb-3">
                     <label for="phone" class="form-label">Phone</label>
-                    <input type="tel" formControlName="phone" name="phone" class="form-control" id="phone" placeholder="01xxxxxxxxx">
+                    <input [ngClass]="{
+                        'is-valid': !registerForm.get('phone')?.errors && registerForm.get('phone')?.touched,
+                        'is-invalid': registerForm.get('phone')?.errors && registerForm.get('phone')?.touched
+                    }" type="tel" formControlName="phone" name="phone" class="form-control" id="phone"
+                        placeholder="01xxxxxxxxx">
+                        @if (registerForm.get("phone")?.errors && registerForm.get("phone")?.touched) {
+                            <div class="alert alert-warning my-2 p-2 fs-6 fw-bold rounded-2">
+                            @if (registerForm.get("phone")?.getError("required")) {<p class="m-0">Phone Is Required</p>}
+                            @if (registerForm.get("phone")?.getError("pattern")) {<p class="m-0">Egyptian numbers only are allowed</p>}
+                            </div>
+                        }
                 </div>
                 <div class="mb-3">
                     <label for="password" class="form-label">Password</label>
-                    <input type="password" formControlName="password" name="password" class="form-control" id="password" placeholder="*******">
+                    <input [ngClass]="{
+                        'is-valid': !registerForm.get('password')?.errors && registerForm.get('password')?.touched,
+                        'is-invalid': registerForm.get('password')?.errors && registerForm.get('password')?.touched
+                    }" type="password" formControlName="password" name="password" class="form-control" id="password"
+                        placeholder="*******">
+                        @if (registerForm.get("password")?.errors && registerForm.get("password")?.touched) {
+                            <div class="alert alert-warning my-2 p-2 fs-6 fw-bold rounded-2">
+                            @if (registerForm.get("password")?.getError("required")) {<p class="m-0">Password Is Required</p>}
+                            @if (registerForm.get("password")?.getError("pattern")) {<p class="m-0">Password must contain at least 6 characters</p>}
+                            </div>
+                        }
                 </div>
                 <div class="mb-3">
                     <label for="password" class="form-label">Confirm Password</label>
-                    <input type="password" formControlName="confirmPassword" class="form-control" id="password" placeholder="*******">
+                    <input [ngClass]="{
+                        'is-valid': !registerForm.getError('mismatch') && registerForm.get('confirmPassword')?.touched,
+                        'is-invalid': registerForm.getError('mismatch') && registerForm.get('confirmPassword')?.touched
+                    }" type="password" formControlName="confirmPassword" class="form-control" id="password"
+                        placeholder="*******">
+                        @if (registerForm.getError("mismatch") && registerForm.get("confirmPassword")?.touched) {
+                            <div class="alert alert-warning my-2 p-2 fs-6 fw-bold rounded-2">
+                                <p class="m-0">Passwords are not the same</p>
+                            </div>
+                        }
                 </div>
-                <button class="btn btn-success w-50 d-block mx-auto" [disabled]="registerForm.invalid">Submit</button>
+                <button class="btn btn-success w-50 d-block mx-auto">Submit</button>
             </form>
         </div>
     </div>

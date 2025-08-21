@@ -1,15 +1,19 @@
+import { NgClass } from '@angular/common';
 import { Component } from '@angular/core';
 import { AbstractControl, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { __values } from 'tslib';
+import { AuthService } from '../../core/services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register',
   standalone: true,
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, NgClass],
   templateUrl: './register.component.html',
   styleUrl: './register.component.css'
 })
 export class RegisterComponent {
+
+  constructor ( private _AuthService:AuthService, private _Router:Router ) {}
 
   registerForm: FormGroup = new FormGroup({
     name: new FormControl(null, [ Validators.required,Validators.minLength(3), Validators.maxLength(12)]),
@@ -29,12 +33,22 @@ export class RegisterComponent {
     if (form.get("password")?.value === form.get("confirmPassword")?.value){
       return null
     }else{
-      return {'missmatch': true}
+      return {'mismatch': true}
     }
   }
+  resText !: string
 
   submitForm():void{
-    console.log(this.registerForm)
+    if(this.registerForm.valid){
+      console.log(this.registerForm)
+      setTimeout(() => {
+        this._Router.navigate(["/auth/login"])
+      }, 2000);
+      
+    }else{
+      this.registerForm.markAllAsTouched()
+      this.registerForm.setErrors({"mismatch":true})
+    }
   }
 
 

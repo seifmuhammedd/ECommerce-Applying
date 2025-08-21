@@ -9,6 +9,7 @@ import { AuthLayoutComponent } from './layouts/auth-layout/auth-layout.component
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
 import { ShopComponent } from './components/shop/shop.component';
+import { userGuard } from './core/guards/user.guard';
 
 export const routes: Routes = [
     {path:"", redirectTo:"user", pathMatch: 'full'},
@@ -17,7 +18,7 @@ export const routes: Routes = [
         {path: "login", component: LoginComponent, title: "LogIn"},
         {path: "register", component: RegisterComponent, title: "Register"},
     ]},
-    {path: "user", component: UserLayoutComponent, children:[
+    {path: "user", component: UserLayoutComponent, canActivate:[userGuard], children:[
         {path:"", redirectTo:"user-home", pathMatch: 'full'},
         {path:"user-home", component: HomeUserComponent, title: "Home"},
         {path:"cart", component: CartComponent, title: "Cart"},

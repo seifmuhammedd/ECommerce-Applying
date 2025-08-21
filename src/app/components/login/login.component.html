@@ -1,1 +1,37 @@
-<p>login works!</p>
+<section class="m-3">
+    <div class="container">
+        <div class="w-75 mx-auto">
+            <form class="bg-light p-3" [formGroup]="logInForm" (ngSubmit)="submitForm()">
+                <div class="mb-3">
+                    <label for="email" class="form-label">Email address</label>
+                    <input [ngClass]="{
+                        'is-valid': !logInForm.get('email')?.errors && logInForm.get('email')?.touched,
+                        'is-invalid': logInForm.get('email')?.errors && logInForm.get('email')?.touched
+                    }" type="email" formControlName="email" class="form-control" id="email"
+                        placeholder="name@example.com">
+                        @if (logInForm.get("email")?.errors && logInForm.get("email")?.touched) {
+                            <div class="alert alert-warning my-2 p-2 fs-6 fw-bold rounded-2">
+                            @if (logInForm.get("email")?.getError("required")) {<p class="m-0">Email Is Required</p>}
+                            @if (logInForm.get("email")?.getError("pattern")) {<p class="m-0">Email format is not correct</p>}
+                            </div>
+                        }
+                </div>
+                <div class="mb-3">
+                    <label for="password" class="form-label">Password</label>
+                    <input [ngClass]="{
+                        'is-valid': !logInForm.get('password')?.errors && logInForm.get('password')?.touched,
+                        'is-invalid': logInForm.get('password')?.errors && logInForm.get('password')?.touched
+                    }" type="password" formControlName="password" name="password" class="form-control" id="password"
+                        placeholder="*******">
+                        @if (logInForm.get("password")?.errors && logInForm.get("password")?.touched) {
+                            <div class="alert alert-warning my-2 p-2 fs-6 fw-bold rounded-2">
+                            @if (logInForm.get("password")?.getError("required")) {<p class="m-0">Password Is Required</p>}
+                            @if (logInForm.get("password")?.getError("pattern")) {<p class="m-0">Password must contain at least 6 characters</p>}
+                            </div>
+                        }
+                </div>
+                <button class="btn btn-success w-50 d-block mx-auto">Submit</button>
+            </form>
+        </div>
+    </div>
+</section>
