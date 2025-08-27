@@ -1,0 +1,24 @@
+<section class="my-3">
+    <div class="container">
+        <div class="w-75 mx-auto">
+            <form class="bg-light p-3" [formGroup]="postForm" (ngSubmit)="submitForm()">
+                <div class="mb-3">
+                    <label for="title" class="form-label">Title</label>
+                    <input type="text" class="form-control" id="title"
+                        placeholder="text" formControlName="title">
+                </div>
+                <div class="mb-3">
+                    <label for="body" class="form-label">Body</label>
+                    <input type="text" class="form-control" id="body"
+                        placeholder="body" formControlName="body">
+                </div>
+                <div class="mb-3">
+                    <label for="userId" class="form-label">User ID</label>
+                    <input type="number" class="form-control" id="userId"
+                        placeholder="number" formControlName="userId">
+                </div>
+                <button class="btn btn-outline-success w-50 d-block mx-auto">Submit</button>
+            </form>
+        </div>
+    </div>
+</section>

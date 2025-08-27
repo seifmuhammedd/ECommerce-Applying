@@ -1,1 +1,44 @@
-<p>home-user works!</p>
+<section class="my-3">
+    <div class="container">
+        <owl-carousel-o [options]="mainSlider">
+            <ng-template carouselSlide>
+                <img src="../../../assets/slider-image-1.jpeg" alt="" class="w-75 mx-auto" height="250px">
+            </ng-template>
+            <ng-template carouselSlide>
+                <img src="../../../assets/slider-image-2.jpeg" alt="" class="w-75 mx-auto" height="250px">
+            </ng-template>
+            <ng-template carouselSlide>
+                <img src="../../../assets/slider-image-3.jpeg" alt="" class="w-75 mx-auto" height="250px">
+            </ng-template>
+        </owl-carousel-o>
+    </div>
+</section>
+<section>
+    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nemo dignissimos tempore laboriosam voluptatum, laborum
+        ipsam id distinctio in non omnis corporis rem! Illum a magni quibusdam porro vitae quisquam nobis iusto veniam
+        aperiam ratione ea sunt numquam neque, temporibus atque, illo doloribus? Corporis maiores natus laborum
+        voluptates expedita laboriosam perferendis repudiandae quia exercitationem. Qui nam illum libero reiciendis
+        harum ab beatae, labore explicabo nemo, neque dicta eius perferendis deleniti minus sint, id sit tempore ducimus
+        magnam excepturi corporis. Repellat quos quam voluptate temporibus nam ab molestias corrupti perspiciatis
+        voluptatibus, culpa, minima similique maxime dolore eum harum explicabo facere nesciunt magni eos optio dolorum.
+        Id, facere harum? Quasi quod eius veniam amet nisi voluptate, ab ex excepturi recusandae asperiores? Ut, vel
+        ratione ducimus sequi omnis temporibus quae accusamus consequatur voluptatibus eum aspernatur dolorem aperiam
+        similique distinctio amet nesciunt dolore tempora et nam nulla molestias! Voluptatibus perferendis enim iure
+        beatae tempore tenetur molestiae ratione numquam? Fuga obcaecati voluptatum delectus exercitationem, deserunt
+        facilis culpa nisi hic aut odio voluptate laudantium distinctio iste! Placeat vel maiores cupiditate, quibusdam
+        iure, illum perferendis aliquid amet ipsam, porro obcaecati officia quisquam accusamus asperiores inventore
+        blanditiis esse cumque. Neque ut quaerat praesentium nemo est, natus illum fugiat? Odit.</p>
+</section>
+
+<section class="my-3">
+    <div class="container">
+        <owl-carousel-o [options]="subSlider">
+
+            @for (recipe of recipesData; track recipe.recipe_id) {
+                <ng-template carouselSlide [id]="recipe.recipe_id">
+                    <img [src]="recipe.image_url" [alt]="recipe?.title" [title]="recipe?.title" class="w-100" height="250px">
+                </ng-template>
+            }
+        </owl-carousel-o>
+    </div>
+</section>

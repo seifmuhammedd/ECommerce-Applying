@@ -10,6 +10,8 @@ import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
 import { ShopComponent } from './components/shop/shop.component';
 import { userGuard } from './core/guards/user.guard';
+import { BlogComponent } from './components/blog/blog.component';
+import { RecipesComponent } from './components/recipes/recipes.component';
 
 export const routes: Routes = [
     {path:"", redirectTo:"user", pathMatch: 'full'},
@@ -18,11 +20,13 @@ export const routes: Routes = [
         {path: "login", component: LoginComponent, title: "LogIn"},
         {path: "register", component: RegisterComponent, title: "Register"},
     ]},
-    {path: "user", component: UserLayoutComponent, canActivate:[userGuard], children:[
+    {path: "user", component: UserLayoutComponent, children:[
         {path:"", redirectTo:"user-home", pathMatch: 'full'},
         {path:"user-home", component: HomeUserComponent, title: "Home"},
         {path:"cart", component: CartComponent, title: "Cart"},
         {path:"shop", component: ShopComponent, title: "Shop"},
+        {path:"blog", component: BlogComponent, title: "Blog"},
+        {path:"recipes", component: RecipesComponent, title: "Recipes"},
     ]},
     {path: "admin", component: AdminLayoutComponent, children:[
         {path:"", redirectTo:"admin-home", pathMatch: 'full'},

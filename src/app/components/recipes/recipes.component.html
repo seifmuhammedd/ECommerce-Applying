@@ -1,0 +1,26 @@
+<section>
+    <div class="container">
+        <div class="mb-3 w-50 mx-auto my-2">
+            <label for="search" class="form-label">Search</label>
+            <input type="text" class="form-control" id="search" placeholder="Search Here..." #searchInput (change)="searchRecipe()">
+        </div>
+        <div class="row g-3">
+            @for (recipe of recipesData; track $index) {
+            <div class="col-md-4">
+                <a [href]="recipe.source_url" class="text-decoration-none" target="_blank">
+                    <div class="card cursor-pointer">
+                        <img [src]="recipe.image_url" class="card-img-top w-100" [alt]="recipe.title">
+                        <div class="card-body">
+                            <h5 class="card-title">{{recipe.title}}</h5>
+                            <h6 class="card-title">{{recipe.publisher}}</h6>
+                            <p class="card-text">Some quick example text to build on the card title and make up the bulk
+                                of
+                                the card’s content.</p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            }
+        </div>
+    </div>
+</section>
